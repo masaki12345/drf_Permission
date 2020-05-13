@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
+from django.contrib.auth.models import User
 
 
 class Ebook(models.Model):
@@ -17,7 +18,7 @@ class Ebook(models.Model):
 class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
-    review_author = models.TextField(max_length=10, blank=True, null=True)
+    review_author = models.ForeignKey(User, on_delete=models.CASCADE)
     review = models.TextField(blank=True, null=True)
     rating = models.PositiveIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)])

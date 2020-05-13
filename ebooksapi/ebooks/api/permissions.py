@@ -12,3 +12,11 @@ class IsAdminUserOrReadOnly(permissions.IsAdminUser):
         # print(permissions.SAFE_METHODS)
         # print("#################################")
         return request.method in permissions.SAFE_METHODS or is_admin
+
+
+class IsReviewAuthOrReadOnly(permissions.BasePermission):
+    def has_object_permission(self,review,view,obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        return obj.review_author == request.user
