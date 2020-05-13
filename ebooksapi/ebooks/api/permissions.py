@@ -12,3 +12,4 @@ class IsAdminUserOrReadOnly(permissions.IsAdminUser):
         # print(permissions.SAFE_METHODS)
         # print("#################################")
         return request.method in permissions.SAFE_METHODS or is_admin
+# sdfsads
